@@ -61,8 +61,9 @@ A lightweight Node.js server built with Fastify that provides real-time system m
 
 ### Option 2: Automated Setup
 
-Run the setup script:
+Download and run the setup script:
 ```bash
+wget https://github.com/proctor360-inc/uptime/blob/main/setup.sh
 chmod +x setup.sh
 ./setup.sh
 ```
