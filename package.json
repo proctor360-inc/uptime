@@ -1,0 +1,14 @@
+{
+  "name": "uptime-server",
+  "version": "1.0.0",
+  "description": "A Fastify server for system uptime and resource monitoring (disk, memory, CPU, tmp storage).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "fastify": "^4.0.0"
+  }
+} 
