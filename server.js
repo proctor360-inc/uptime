@@ -6,7 +6,7 @@ const PORT = 6600;
 
 function checkDiskSpace() {
   return new Promise((resolve, reject) => {
-    exec("df -h | grep '/dev/root'", (error, stdout, stderr) => {
+    exec("df -h | grep '/dev/nvme0n1p1'", (error, stdout, stderr) => {
       if (error || stderr) {
         reject(error || stderr);
       } else {
