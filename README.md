@@ -37,7 +37,31 @@ The server will start on port 6600 and listen on all interfaces (`0.0.0.0`).
 
 ### API Endpoints
 
-#### 1. Disk Space Check
+#### 1. Server Status
+**GET** `/`
+
+Returns basic server status information including uptime and available endpoints.
+
+**Response:**
+```json
+{
+  "status": "Server is running",
+  "timestamp": "2024-01-15T10:30:00.000Z",
+  "uptime": "2h 15m 30s",
+  "uptimeSeconds": 8130,
+  "port": 6600,
+  "endpoints": {
+    "/": "Server status",
+    "/space": "Disk space usage",
+    "/tmp": "Tmp storage usage",
+    "/memory": "Memory usage",
+    "/cpu": "CPU usage",
+    "/threads": "Thread count"
+  }
+}
+```
+
+#### 2. Disk Space Check
 **GET** `/space`
 
 Returns disk usage information for the root filesystem (`/dev/root`).
@@ -60,7 +84,7 @@ Returns disk usage information for the root filesystem (`/dev/root`).
 }
 ```
 
-#### 2. Temporary Storage Check
+#### 3. Temporary Storage Check
 **GET** `/tmp`
 
 Returns usage information for the `/tmp` directory.
@@ -83,7 +107,7 @@ Returns usage information for the `/tmp` directory.
 }
 ```
 
-#### 3. Memory Usage Check
+#### 4. Memory Usage Check
 **GET** `/memory`
 
 Returns current memory usage statistics.
