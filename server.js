@@ -80,6 +80,34 @@ function checkThreads() {
   });
 }
 
+fastify.get('/', async (req, reply) => {
+  try {
+    const uptime = process.uptime();
+    const uptimeFormatted = `${Math.floor(uptime / 3600)}h ${Math.floor((uptime % 3600) / 60)}m ${Math.floor(uptime % 60)}s`;
+    
+    reply.status(200).send({
+      status: 'Server is running',
+      timestamp: new Date().toISOString(),
+      uptime: uptimeFormatted,
+      uptimeSeconds: Math.floor(uptime),
+      port: PORT,
+      endpoints: {
+        '/': 'Server status',
+        '/space': 'Disk space usage',
+        '/tmp': 'Tmp storage usage', 
+        '/memory': 'Memory usage',
+        '/cpu': 'CPU usage',
+        '/threads': 'Thread count'
+      }
+    });
+  } catch (error) {
+    reply.status(500).send({
+      message: 'Error retrieving server status.',
+      error: error.message,
+    });
+  }
+});
+
 fastify.get('/space', async (req, reply) => {
   try {
     const diskSpace = await checkDiskSpace();
