@@ -19,11 +19,61 @@ A lightweight Node.js server built with Fastify that provides real-time system m
 
 ## Installation
 
-1. Clone or download the project files
-2. Install dependencies:
+### Option 1: Manual Setup
+
+1. Clone the project:
+   ```bash
+   git clone https://github.com/proctor360-inc/uptime.git
+   cd uptime
+   ```
+
+2. Check for Node.js:
+   ```bash
+   node -v
+   ```
+
+3. If Node.js is not installed, install NVM and Node.js:
+   ```bash
+   # Install NVM
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+   export NVM_DIR="$HOME/.nvm"
+   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+   
+   # Install Node.js 16.20.2
+   nvm install 16.20.2
+   nvm use 16.20.2
+   ```
+
+4. Install PM2 globally (if not already installed):
+   ```bash
+   npm install -g pm2
+   ```
+
+5. Install project dependencies:
    ```bash
    npm install
    ```
+
+6. Start the server with PM2:
+   ```bash
+   pm2 start server.js --name uptime
+   ```
+
+### Option 2: Automated Setup
+
+Run the setup script:
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+### PM2 Management Commands
+
+- View logs: `pm2 logs uptime`
+- Check status: `pm2 status`
+- Restart server: `pm2 restart uptime`
+- Stop server: `pm2 stop uptime`
+- Delete server: `pm2 delete uptime`
 
 ## Usage
 
@@ -129,7 +179,7 @@ Returns current memory usage statistics.
 }
 ```
 
-#### 4. CPU Usage Check
+#### 5. CPU Usage Check
 **GET** `/cpu`
 
 Returns current CPU utilization percentage.
@@ -148,7 +198,7 @@ Returns current CPU utilization percentage.
 }
 ```
 
-#### 5. Thread Count Check
+#### 6. Thread Count Check
 **GET** `/threads`
 
 Returns the number of file descriptors for processes using port 8888.
